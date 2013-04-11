@@ -1,4 +1,5 @@
 #include "CoreSystem.h"
+#include "Window32.h"
 
 CoreSystem::CoreSystem()
 {
@@ -43,5 +44,5 @@ void CoreSystem::Shutdown()
 
 void CoreSystem::Run()
 {
-	Sleep(5000);
+	m_window->Update();
 }

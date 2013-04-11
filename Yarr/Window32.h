@@ -1,18 +1,21 @@
 #ifndef _WINDOW32_H_
 #define _WINDOW32_H_
 
+
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include "GenWindow.h"
 
-class Window32
+class Window32 : public GenWindow
 {
 public:
 	Window32();
 	Window32(const Window32&);
 	~Window32();
-	bool Create(LPCWSTR, int&, int&);
+	bool Create(const wchar_t*, int&, int&);
 	void Shutdown();
 	LRESULT CALLBACK MessageHandler(HWND, UINT, WPARAM, LPARAM);
+	void Update();
 
 private:
 	LPCWSTR m_applicationName;

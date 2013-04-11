@@ -1,7 +1,7 @@
 #ifndef _CORESYSTEM_H_
 #define _CORESYSTEM_H_
 
-#include "Window32.h"
+#include "GenWindow.h"
 
 class CoreSystem
 {
@@ -14,6 +14,6 @@ public:
 	void Run();
 
 private:
-	Window32* m_window;
+	GenWindow* m_window;
 };
 #endif

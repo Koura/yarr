@@ -31,14 +31,14 @@ LRESULT CALLBACK Window32::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, L
 	}
 }
 
-bool Window32::Create(LPCWSTR title, int& screenWidth, int& screenHeight) 
+bool Window32::Create(const wchar_t* title, int& screenWidth, int& screenHeight) 
 {
 	WNDCLASSEX wc;
 	DEVMODE dmScreenSettings;
 	int posX, posY;
 	ApplicationHandle = this;
 	m_hinstance = GetModuleHandle(NULL);
-	m_applicationName = title;
+	m_applicationName = (LPWSTR)title;
 	wc.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 	wc.lpfnWndProc = WndProc;
 	wc.cbClsExtra = 0;
@@ -90,4 +90,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 			return ApplicationHandle->MessageHandler(hwnd, umessage, wparam, lparam);
 		}
 	}
+}
+
+void Window32::Update() 
+{
+	Sleep(5000);
 }

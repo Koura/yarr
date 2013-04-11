@@ -1,5 +1,5 @@
 #include "CoreSystem.h"
-
+#include "Window32.h"
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline, int iCmdShow)
 { 
 	CoreSystem* System;
