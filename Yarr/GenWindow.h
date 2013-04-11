@@ -8,7 +8,7 @@ public:
 	virtual ~GenWindow(){};
 	virtual bool Create(const wchar_t*, int&, int&) = 0;
 	virtual void Shutdown() = 0;
-	virtual void Update() = 0;
+	virtual bool Update() = 0;
 };
 
 #endif

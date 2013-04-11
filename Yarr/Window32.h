@@ -15,7 +15,7 @@ public:
 	bool Create(const wchar_t*, int&, int&);
 	void Shutdown();
 	LRESULT CALLBACK MessageHandler(HWND, UINT, WPARAM, LPARAM);
-	void Update();
+	bool Update();
 
 private:
 	LPCWSTR m_applicationName;

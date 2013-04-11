@@ -92,7 +92,18 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 	}
 }
 
-void Window32::Update() 
+bool Window32::Update() 
 {
-	Sleep(5000);
+	MSG msg;
+	ZeroMemory(&msg, sizeof(MSG));
+	if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+	if(msg.message == WM_QUIT)
+	{
+		return false;
+	}
+	return true;
 }

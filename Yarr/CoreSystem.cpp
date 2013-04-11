@@ -44,5 +44,13 @@ void CoreSystem::Shutdown()
 
 void CoreSystem::Run()
 {
-	m_window->Update();
+	bool done;
+	done = false;
+	while(!done) 
+	{
+		if(!m_window->Update()) 
+		{
+			done = true;
+		}
+	}
 }
