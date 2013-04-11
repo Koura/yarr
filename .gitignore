@@ -2,3 +2,7 @@ Debug/
 ipch/
 Yarr/Debug/
 /Yarr/Yarr.vcxproj.user
+Yarr.suo
+.git-rewrite
+Yarr.opensdf
+Yarr.sdf
