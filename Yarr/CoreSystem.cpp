@@ -4,6 +4,7 @@
 CoreSystem::CoreSystem()
 {
 	m_window = 0;
+	m_renderer = 0;
 }
 
 CoreSystem::CoreSystem(const CoreSystem& other)
@@ -33,6 +34,11 @@ bool CoreSystem::Initialize()
 
 void CoreSystem::Shutdown()
 {
+	if(m_renderer)
+	{
+		delete m_renderer;
+		m_renderer = 0;
+	}
 	if(m_window)
 	{
 		m_window->Shutdown();

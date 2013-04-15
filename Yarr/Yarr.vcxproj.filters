@@ -35,5 +35,8 @@
     <ClInclude Include="GenWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

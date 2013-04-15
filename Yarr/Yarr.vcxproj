@@ -81,6 +81,7 @@
   <ItemGroup>
     <ClInclude Include="CoreSystem.h" />
     <ClInclude Include="GenWindow.h" />
+    <ClInclude Include="IRenderer.h" />
     <ClInclude Include="Window32.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
