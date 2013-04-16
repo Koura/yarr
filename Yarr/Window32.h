@@ -16,6 +16,7 @@ public:
 	void Shutdown();
 	LRESULT CALLBACK MessageHandler(HWND, UINT, WPARAM, LPARAM);
 	bool Update();
+	HWND GetHWND();
 
 private:
 	LPCWSTR m_applicationName;

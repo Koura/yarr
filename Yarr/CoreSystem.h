@@ -13,6 +13,10 @@ public:
 	bool Initialize();
 	void Shutdown();
 	void Run();
+	void SetWindow(GenWindow*);
+	void SetGraphics();
+	void SetGraphics(IRenderer*);
+	bool InitGraphics();
 
 private:
 	GenWindow* m_window;

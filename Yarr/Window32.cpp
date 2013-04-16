@@ -107,3 +107,8 @@ bool Window32::Update()
 	}
 	return true;
 }
+
+HWND Window32::GetHWND() 
+{
+	return m_hwnd;
+}

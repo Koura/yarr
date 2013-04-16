@@ -18,11 +18,6 @@ CoreSystem::~CoreSystem()
 bool CoreSystem::Initialize()
 {
 	int x, y;
-	m_window = new Window32;
-	if(!m_window)
-	{
-		return false;
-	}
 	x = 800;
 	y = 600;
 	if(!m_window->Create(L"YARR", x, y))
@@ -59,4 +54,19 @@ void CoreSystem::Run()
 			done = true;
 		}
 	}
+}
+
+void CoreSystem::SetWindow(GenWindow* genWin)
+{
+	m_window = genWin;
+}
+
+void CoreSystem::SetGraphics(IRenderer* iRenderer)
+{
+	m_renderer = iRenderer;
+}
+
+bool CoreSystem::InitGraphics()
+{
+	return true;
 }
