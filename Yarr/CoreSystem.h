@@ -10,13 +10,13 @@ public:
 	CoreSystem();
 	CoreSystem(const CoreSystem&);
 	~CoreSystem();
-	bool Initialize();
+	bool Initialize(int, int);
 	void Shutdown();
 	void Run();
 	void SetWindow(GenWindow*);
 	void SetGraphics();
 	void SetGraphics(IRenderer*);
-	bool InitGraphics();
+	bool InitGraphics(int, int);
 
 private:
 	GenWindow* m_window;

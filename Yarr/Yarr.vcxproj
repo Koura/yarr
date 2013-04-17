@@ -75,11 +75,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CoreSystem.cpp" />
+    <ClCompile Include="D3D10Class.cpp" />
     <ClCompile Include="Window32.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreSystem.h" />
+    <ClInclude Include="D3D10Class.h" />
     <ClInclude Include="GenWindow.h" />
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="Window32.h" />

@@ -15,12 +15,9 @@ CoreSystem::~CoreSystem()
 {
 }
 
-bool CoreSystem::Initialize()
+bool CoreSystem::Initialize(int screenWidth, int screenHeight)
 {
-	int x, y;
-	x = 800;
-	y = 600;
-	if(!m_window->Create(L"YARR", x, y))
+	if(!m_window->Create(L"YARR", screenWidth, screenHeight))
 	{
 		return false;
 	}
@@ -31,6 +28,7 @@ void CoreSystem::Shutdown()
 {
 	if(m_renderer)
 	{
+		m_renderer->Shutdown();
 		delete m_renderer;
 		m_renderer = 0;
 	}
@@ -66,7 +64,10 @@ void CoreSystem::SetGraphics(IRenderer* iRenderer)
 	m_renderer = iRenderer;
 }
 
-bool CoreSystem::InitGraphics()
+bool CoreSystem::InitGraphics(int screenWidth, int screenHeight)
 {
-	return true;
+	if(!m_renderer->Initialize(screenWidth, screenHeight))
+	{
+		return false;
+	}
 }
