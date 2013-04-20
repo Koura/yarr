@@ -1,7 +1,10 @@
+References/
 Debug/
+Release/
 ipch/
-Yarr/Debug/
-/Yarr/Yarr.vcxproj.user
+*/Debug/
+*/Release/
+/*/*.vcxproj.user
 Yarr.suo
 .git-rewrite
 Yarr.opensdf
