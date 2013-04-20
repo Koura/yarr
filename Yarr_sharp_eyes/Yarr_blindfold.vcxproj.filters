@@ -15,18 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CoreSystem.cpp">
+    <ClCompile Include="Yarr_blindfold.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CoreSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GenWindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IRenderer.h">
+    <ClInclude Include="ConsoleWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

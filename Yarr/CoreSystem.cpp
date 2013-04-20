@@ -1,6 +1,17 @@
 #include "CoreSystem.h"
 #include "Window32.h"
 
+extern "C" {
+  #include "lua.h"
+  #include "lualib.h"
+  #include "lauxlib.h"
+}
+#include "luabind/luabind.hpp"
+
+//temporary
+#include <iostream>
+#include <string>
+
 CoreSystem::CoreSystem()
 {
 	m_window = 0;
@@ -43,6 +54,20 @@ void CoreSystem::Shutdown()
 
 void CoreSystem::Run()
 {
+	//luabind
+	lua_State *myLuaState = luaL_newstate();
+	luabind::open(myLuaState);
+	luaL_dostring(
+    myLuaState,
+    "function add(first, second)\n"
+    "  return first + second\n"
+    "end\n"
+  );
+ 
+  std::cout << "Result: "
+       << luabind::call_function<int>(myLuaState, "add", 2, 3)
+       << std::endl;
+	//
 	bool done;
 	done = false;
 	while(!done) 
@@ -52,6 +77,7 @@ void CoreSystem::Run()
 			done = true;
 		}
 	}
+	lua_close(myLuaState);
 }
 
 void CoreSystem::SetWindow(GenWindow* genWin)
