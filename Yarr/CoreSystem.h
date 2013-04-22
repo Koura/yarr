@@ -1,6 +1,13 @@
 #ifndef _CORESYSTEM_H_
 #define _CORESYSTEM_H_
 
+extern "C" {
+  #include "lua.h"
+  #include "lualib.h"
+  #include "lauxlib.h"
+}
+#include "luabind/luabind.hpp"
+
 #include "GenWindow.h"
 #include "IRenderer.h"
 
@@ -21,5 +28,6 @@ public:
 private:
 	GenWindow* m_window;
 	IRenderer* m_renderer;
+	lua_State *m_LuaState;
 };
 #endif
