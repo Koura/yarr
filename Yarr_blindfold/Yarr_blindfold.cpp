@@ -9,7 +9,8 @@ int main(int argc, char* argv[])
 	CoreSystem System;
 	ConsoleWindow cw;
 	System.SetWindow(&cw);
-
+	System.Initialize(0,0);
+	System.Run();
 	return 0;
 }
 

@@ -1,5 +1,4 @@
 #include "CoreSystem.h"
-#include "Window32.h"
 
 //temporary
 #include <iostream>
@@ -25,6 +24,10 @@ bool CoreSystem::Initialize(int screenWidth, int screenHeight)
 	{
 		return false;
 	}
+	//luabind
+	m_LuaState = luaL_newstate();
+	luabind::open(m_LuaState);
+
 	return true;
 }
 
@@ -47,18 +50,15 @@ void CoreSystem::Shutdown()
 
 void CoreSystem::Run()
 {
-	//luabind
-	lua_State *myLuaState = luaL_newstate();
-	luabind::open(myLuaState);
 	luaL_dostring(
-    myLuaState,
+    m_LuaState,
     "function add(first, second)\n"
     "  return first + second\n"
     "end\n"
   );
  
   std::cout << "Result: "
-       << luabind::call_function<int>(myLuaState, "add", 2, 3)
+       << luabind::call_function<int>(m_LuaState, "add", 2, 3)
        << std::endl;
 	//
 	bool done;
@@ -70,7 +70,7 @@ void CoreSystem::Run()
 			done = true;
 		}
 	}
-	lua_close(myLuaState);
+	lua_close(m_LuaState);
 }
 
 void CoreSystem::SetWindow(GenWindow* genWin)
