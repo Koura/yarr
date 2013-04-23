@@ -63,6 +63,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\References\luabind\msvc-10.0-x86;..\References\lua\msvc-10.0-x86;..\References\luabind\msvc-2012-x86;..\References\lua\msvc-2012-x86</AdditionalLibraryDirectories>
     </Link>
+    <FxCompile>
+      <EntryPointName>ColorTechnique</EntryPointName>
+      <ShaderModel>4.0</ShaderModel>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -93,10 +97,12 @@
     <ClCompile Include="..\Yarr\D3D10Class.cpp" />
     <ClCompile Include="..\Yarr\Window32.cpp" />
     <ClCompile Include="..\Yarr\WinMain.cpp" />
+    <ClCompile Include="ColorShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Yarr\D3D10Class.h" />
     <ClInclude Include="..\Yarr\Window32.h" />
+    <ClInclude Include="ColorShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Yarr\Yarr.vcxproj">
@@ -107,6 +113,17 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Resources\color.fx">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Effect</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4.0</ShaderModel>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

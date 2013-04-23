@@ -34,7 +34,7 @@ technique10 ColorTechnique
 {
 	pass pass0
 	{
-		SetVertexShader(CompileShaders(v_4_0, ColorVertexShader()));
+		SetVertexShader(CompileShader(vs_4_0, ColorVertexShader()));
 		SetPixelShader(CompileShader(ps_4_0, ColorPixelShader()));
 		SetGeometryShader(NULL);
 	}
