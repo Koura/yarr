@@ -3,5 +3,5 @@ function add(first, second)
 end
 
 function init()
-	print("moi")
+	print("moi!!!")
 end
