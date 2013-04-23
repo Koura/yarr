@@ -10,6 +10,7 @@ extern "C" {
 
 #include "GenWindow.h"
 #include "IRenderer.h"
+#include "Scene.h"
 
 class CoreSystem
 {
@@ -29,5 +30,6 @@ private:
 	GenWindow* m_window;
 	IRenderer* m_renderer;
 	lua_State *m_LuaState;
+	Scene* m_scene;
 };
 #endif

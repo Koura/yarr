@@ -3,7 +3,7 @@
 
 #include <cmath>
 
-struct Position
+struct POSITION
 {
 	float x;
 	float y;
@@ -16,8 +16,9 @@ public:
 	Entity();
 	Entity(const Entity&);
 	~Entity();
-	Position GetPosition();
+	POSITION GetPosition();
 	void SetPosition(float, float, float);
+
 private:
 	float m_posX, m_posY, m_posZ;
 };
