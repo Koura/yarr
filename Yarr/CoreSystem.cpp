@@ -1,8 +1,12 @@
 #include "CoreSystem.h"
 
-//temporary
-#include <iostream>
-#include <string>
+extern "C" {
+  #include "lua.h"
+  #include "lualib.h"
+  #include "lauxlib.h"
+}
+#include "luabind/luabind.hpp"
+
 
 CoreSystem::CoreSystem()
 {
@@ -27,7 +31,7 @@ bool CoreSystem::Initialize(int screenWidth, int screenHeight)
 	//luabind
 	m_LuaState = luaL_newstate();
 	luabind::open(m_LuaState);
-
+	m_luaApi = new LuaApi(m_LuaState);
 	return true;
 }
 
@@ -45,32 +49,48 @@ void CoreSystem::Shutdown()
 		delete m_window;
 		m_window = 0;
 	}
+	if(m_LuaState)
+	{
+		lua_close(m_LuaState);
+		m_LuaState = 0;
+	}
+	if(m_luaApi)
+	{
+		m_luaApi->~LuaApi();
+		m_luaApi = 0;
+	}
 	return;
 }
 
 void CoreSystem::Run()
 {
-	luaL_dostring(
-    m_LuaState,
-    "function add(first, second)\n"
-    "  return first + second\n"
-    "end\n"
-  );
- 
-  std::cout << "Result: "
-       << luabind::call_function<int>(m_LuaState, "add", 2, 3)
-       << std::endl;
-	//
+	Reload();
 	bool done;
 	done = false;
 	while(!done) 
 	{
+		//Reload();
+		luabind::call_function<void>(m_LuaState, "update");
+
 		if(!m_window->Update()) 
 		{
 			done = true;
 		}
 	}
-	lua_close(m_LuaState);
+}
+
+void CoreSystem::Reload()
+{
+	m_luaApi->RegisterToLua();
+	luaL_dofile(
+		m_LuaState,
+		"../Game/init.lua"
+	);
+	luaL_dofile(
+		m_LuaState,
+		"../Game/update.lua"
+	);
+	luabind::call_function<void>(m_LuaState, "init");
 }
 
 void CoreSystem::SetWindow(GenWindow* genWin)
@@ -90,3 +110,5 @@ bool CoreSystem::InitGraphics(int screenWidth, int screenHeight)
 		return false;
 	}
 }
+
+

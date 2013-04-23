@@ -102,13 +102,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CoreSystem.cpp" />
+    <ClCompile Include="LuaApi.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreSystem.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GenWindow.h" />
     <ClInclude Include="IRenderer.h" />
+    <ClInclude Include="LuaApi.h" />
     <ClInclude Include="Scene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
