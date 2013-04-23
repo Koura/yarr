@@ -94,15 +94,15 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Yarr\D3D10Class.cpp" />
     <ClCompile Include="..\Yarr\Window32.cpp" />
-    <ClCompile Include="..\Yarr\WinMain.cpp" />
     <ClCompile Include="ColorShader.cpp" />
+    <ClCompile Include="D3D10Class.cpp" />
+    <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Yarr\D3D10Class.h" />
     <ClInclude Include="..\Yarr\Window32.h" />
     <ClInclude Include="ColorShader.h" />
+    <ClInclude Include="D3D10Class.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Yarr\Yarr.vcxproj">

@@ -28,6 +28,11 @@ bool CoreSystem::Initialize(int screenWidth, int screenHeight)
 	{
 		return false;
 	}
+	m_scene = new Scene();
+	if(!m_scene)
+	{
+		return false;
+	}
 	//luabind
 	m_LuaState = luaL_newstate();
 	luaL_openlibs(m_LuaState);
@@ -44,6 +49,12 @@ void CoreSystem::Shutdown()
 		m_renderer->Shutdown();
 		delete m_renderer;
 		m_renderer = 0;
+	}
+	if(m_scene)
+	{
+		m_scene->Shutdown();
+		delete m_scene;
+		m_scene = 0;
 	}
 	if(m_window)
 	{
@@ -78,6 +89,10 @@ void CoreSystem::Run()
 		{
 			done = true;
 		}
+		if(m_renderer)
+		{
+			m_renderer->Frame();
+		}
 	}
 }
 
@@ -111,6 +126,8 @@ bool CoreSystem::InitGraphics(int screenWidth, int screenHeight)
 	{
 		return false;
 	}
+	m_renderer->SetScene(m_scene);
+	m_renderer->InitializeShader(L"../Yarr_sharp_eyes/Resources/color.fx");
 }
 
 

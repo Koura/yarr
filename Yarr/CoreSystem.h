@@ -5,6 +5,7 @@
 #include "GenWindow.h"
 #include "IRenderer.h"
 #include "LuaApi.h"
+#include "Scene.h"
 
 class CoreSystem
 {
@@ -26,5 +27,6 @@ private:
 	IRenderer* m_renderer;
 	lua_State* m_LuaState;
 	LuaApi* m_luaApi;
+	Scene* m_scene;
 };
 #endif
