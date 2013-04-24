@@ -101,15 +101,14 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CoreSystem.cpp" />
     <ClCompile Include="LuaApi.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="CoreSystem.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GenWindow.h" />
     <ClInclude Include="IRenderer.h" />

@@ -1,11 +1,13 @@
-#ifndef _CORESYSTEM_H_
-#define _CORESYSTEM_H_
-
+#pragma once
 
 #include "GenWindow.h"
 #include "IRenderer.h"
-#include "LuaApi.h"
-#include "Scene.h"
+class Scene;
+
+class LuaApi;
+extern "C" {
+  #include "lua.h"
+}
 
 class CoreSystem
 {
@@ -29,4 +31,3 @@ private:
 	LuaApi* m_luaApi;
 	Scene* m_scene;
 };
-#endif

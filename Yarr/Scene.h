@@ -1,8 +1,5 @@
-#ifndef _SCENE_H_
-#define _SCENE_H_
-
-
-#include "Camera.h"
+#pragma once
+class Entity;
 #include <set>
 
 class Scene
@@ -19,4 +16,3 @@ public:
 private:
 	std::set<Entity> m_entityList;
 };
-#endif

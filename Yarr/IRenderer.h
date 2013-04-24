@@ -1,7 +1,7 @@
 #ifndef _IRENDERER_H_
 #define _IRENDERER_H_
 
-#include "Scene.h"
+class Scene;
 
 class IRenderer
 {
@@ -14,7 +14,6 @@ public:
 	virtual void Shutdown() = 0;
 	virtual bool Frame() = 0;
 	virtual void SetScene(Scene*) = 0;
-	virtual bool InitializeShader(WCHAR*) = 0;
 private:
 	virtual bool Render() = 0;
 };

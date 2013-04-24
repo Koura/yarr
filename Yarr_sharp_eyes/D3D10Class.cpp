@@ -216,6 +216,12 @@ bool D3D10Class::Initialize(int screenWidth, int screenHeight)
 	D3DXMatrixPerspectiveFovLH(&m_projectionMatrix, fieldOfView, screenAspect, SCREEN_NEAR, SCREEN_DEPTH);
 	D3DXMatrixIdentity(&m_worldMatrix);
 	D3DXMatrixOrthoLH(&m_orthoMatrix, (float)screenWidth, (float)screenHeight, SCREEN_NEAR, SCREEN_DEPTH);
+	
+
+	//////LOAD THE SHADER
+	InitializeShader(L"../Yarr_sharp_eyes/Resources/color.fx");
+	
+	
 	return true;
 }
 

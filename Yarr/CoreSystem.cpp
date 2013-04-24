@@ -1,9 +1,10 @@
 #include "CoreSystem.h"
+#include "LuaApi.h"
+#include "Scene.h"
 
 extern "C" {
   #include "lua.h"
   #include "lualib.h"
-  #include "lauxlib.h"
 }
 #include "luabind/luabind.hpp"
 
@@ -127,7 +128,7 @@ bool CoreSystem::InitGraphics(int screenWidth, int screenHeight)
 		return false;
 	}
 	m_renderer->SetScene(m_scene);
-	m_renderer->InitializeShader(L"../Yarr_sharp_eyes/Resources/color.fx");
+	return true;
 }
 
 

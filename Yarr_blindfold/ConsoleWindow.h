@@ -1,5 +1,5 @@
 #pragma once
-#include "..\yarr\genwindow.h"
+#include "GenWindow.h"
 class ConsoleWindow :
 	public GenWindow
 {
