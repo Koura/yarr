@@ -6,12 +6,12 @@
 #include <D3DX10math.h>
 
 
-class Camera: public Camera
+class DxCamera: public Camera
 {
 public:
-	Camera();
-	Camera(const Camera&);
-	~Camera();
+	DxCamera();
+	DxCamera(const DxCamera&);
+	~DxCamera();
 
 	void SetRotation(float, float, float);
 	D3DXVECTOR3 GetPosition();

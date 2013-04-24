@@ -1,6 +1,6 @@
-#include "D3D10Class.h"
+#include "D3D10Renderer.h"
 
-D3D10Class::D3D10Class()
+D3D10Renderer::D3D10Renderer()
 {
 	m_device = 0;
 	m_swapChain = 0;
@@ -13,22 +13,22 @@ D3D10Class::D3D10Class()
 	m_camera = 0;
 }
 
-D3D10Class::D3D10Class(const D3D10Class& other)
+D3D10Renderer::D3D10Renderer(const D3D10Renderer& other)
 {
 }
 
-D3D10Class::~D3D10Class()
+D3D10Renderer::~D3D10Renderer()
 {
 }
 
-void D3D10Class::SetHWND(HWND hwnd)
+void D3D10Renderer::SetHWND(HWND hwnd)
 {
 	m_hwnd = hwnd;
 }
 
-bool D3D10Class::Initialize(int screenWidth, int screenHeight)
+bool D3D10Renderer::Initialize(int screenWidth, int screenHeight)
 {
-	m_camera = new Camera();
+	m_camera = new DxCamera();
 	if(!m_camera)
 	{
 		return false;
@@ -225,7 +225,7 @@ bool D3D10Class::Initialize(int screenWidth, int screenHeight)
 	return true;
 }
 
-void D3D10Class::Shutdown()
+void D3D10Renderer::Shutdown()
 {
 	if(m_camera)
 	{
@@ -274,7 +274,7 @@ void D3D10Class::Shutdown()
 	return;
 }
 
-void D3D10Class::BeginScene(float red, float green, float blue, float alpha)
+void D3D10Renderer::BeginScene(float red, float green, float blue, float alpha)
 {
 	float color[4];
 	color[0] = red;
@@ -286,7 +286,7 @@ void D3D10Class::BeginScene(float red, float green, float blue, float alpha)
 	return;
 }
 
-void D3D10Class::EndScene()
+void D3D10Renderer::EndScene()
 {
 	if(m_vsync_enabled)
 	{
@@ -299,32 +299,32 @@ void D3D10Class::EndScene()
 	return;
 }
 
-ID3D10Device* D3D10Class::GetDevice()
+ID3D10Device* D3D10Renderer::GetDevice()
 {
 	return m_device;
 }
 
-void D3D10Class::GetProjectionMatrix(D3DXMATRIX& projectionMatrix)
+void D3D10Renderer::GetProjectionMatrix(D3DXMATRIX& projectionMatrix)
 {
 	projectionMatrix = m_projectionMatrix;
 	return;
 }
 
 
-void D3D10Class::GetWorldMatrix(D3DXMATRIX& worldMatrix)
+void D3D10Renderer::GetWorldMatrix(D3DXMATRIX& worldMatrix)
 {
 	worldMatrix = m_worldMatrix;
 	return;
 }
 
 
-void D3D10Class::GetOrthoMatrix(D3DXMATRIX& orthoMatrix)
+void D3D10Renderer::GetOrthoMatrix(D3DXMATRIX& orthoMatrix)
 {
 	orthoMatrix = m_orthoMatrix;
 	return;
 }
 
-bool D3D10Class::Frame()
+bool D3D10Renderer::Frame()
 {
 	bool result;
 	result = Render();
@@ -335,7 +335,7 @@ bool D3D10Class::Frame()
 	return true;
 }
 
-bool D3D10Class::Render()
+bool D3D10Renderer::Render()
 {
 	D3DXMATRIX viewMatrix;
 	BeginScene(0.5f, 0.5f, 0.5f, 1.0f);
@@ -346,12 +346,12 @@ bool D3D10Class::Render()
 	return true;
 }
 
-void D3D10Class::SetScene(Scene* scene)
+void D3D10Renderer::SetScene(Scene* scene)
 {
 	m_scene = scene;
 }
 
-void D3D10Class::SetUpCameraView()
+void D3D10Renderer::SetUpCameraView()
 {
 	D3DXVECTOR3 up, position, lookAt;
 	D3DXVECTOR3 cameraRotation;
@@ -379,7 +379,7 @@ void D3D10Class::SetUpCameraView()
 	return;
 }
 
-bool D3D10Class::InitializeShader(WCHAR* shaderfilename)
+bool D3D10Renderer::InitializeShader(WCHAR* shaderfilename)
 {
 	m_colorShader = new ColorShader;
 	if(!m_colorShader)

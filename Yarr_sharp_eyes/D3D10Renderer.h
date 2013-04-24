@@ -7,6 +7,7 @@
 
 #include "IRenderer.h"
 #include "ColorShader.h"
+#include "DxCamera.h"
 #include <D3D10.h>
 #include <DXGI.h>
 #include <D3DX10.h>
@@ -15,12 +16,12 @@
 const float SCREEN_DEPTH = 1000.0f;
 const float SCREEN_NEAR = 0.1f;
 
-class D3D10Class : public IRenderer
+class D3D10Renderer : public IRenderer
 {
 public:
-	D3D10Class();
-	D3D10Class(const D3D10Class&);
-	~D3D10Class();
+	D3D10Renderer();
+	D3D10Renderer(const D3D10Renderer&);
+	~D3D10Renderer();
 	bool Initialize(int, int);
 	void Shutdown();
 	bool Frame();
@@ -54,6 +55,6 @@ private:
 	HWND m_hwnd;
 	Scene* m_scene;
 	ColorShader* m_colorShader;
-	Camera* m_camera;
+	DxCamera* m_camera;
 };
 #endif

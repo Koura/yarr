@@ -1,12 +1,12 @@
 #include "CoreSystem.h"
 #include "Window32.h"
-#include "D3D10Class.h"
+#include "D3D10Renderer.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline, int iCmdShow)
 { 
 	CoreSystem* System;
 	Window32* window32;
-	D3D10Class* d3d10;
+	D3D10Renderer* d3d10;
 	System = new CoreSystem;
 	int screenWidth, screenHeight;
 	screenWidth = 800;
@@ -25,7 +25,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline,
 	{
 		return 1;
 	}
-	d3d10 = new D3D10Class;
+	d3d10 = new D3D10Renderer;
 	if(!d3d10)
 	{
 		return 1;

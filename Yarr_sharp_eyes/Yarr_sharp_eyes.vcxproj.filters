@@ -21,13 +21,13 @@
     <ClCompile Include="ColorShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D3D10Class.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="WinMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DxCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D10Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -36,9 +36,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ColorShader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="D3D10Class.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DxCamera.h">
@@ -50,13 +47,11 @@
     <ClInclude Include="DxRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="D3D10Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\color.fx" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Yarr_sharp_eyes.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
   </ItemGroup>
 </Project>

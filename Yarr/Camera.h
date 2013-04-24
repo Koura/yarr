@@ -7,8 +7,8 @@ public:
 	Camera(const Camera&);
 	~Camera();
 
-	void SetRotation(float, float, float);
-	void SetPosition(float, float, float);
+    virtual void SetRotation(float, float, float);
+	virtual void SetPosition(float, float, float);
 	
 private:
 	float m_posX, m_posY, m_posZ;

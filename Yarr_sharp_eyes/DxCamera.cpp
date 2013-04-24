@@ -1,56 +1,46 @@
-#include "Camera.h"
+#include "DxCamera.h"
 
-Camera::Camera()	
-{
-	m_posX = 0.0f;
-	m_posY = 0.0f;
-	m_posZ = 0.0f;
-	m_rotX = 0.0f;
-	m_rotY = 0.0f;
-	m_rotZ = 0.0f;
-}
-
-Camera::Camera(const Camera& other)
+DxCamera::DxCamera()
+	: Camera()
 {
 }
 
-Camera::~Camera()
+DxCamera::DxCamera(const DxCamera& other)
+	: Camera(other)
 {
 }
 
-D3DXVECTOR3 Camera::GetPosition()
+DxCamera::~DxCamera()
+{
+}
+
+void DxCamera::SetPosition(float x, float y, float z)
+{
+	Camera::SetPosition(x, y, z);
+}
+
+void DxCamera::SetRotation(float x, float y, float z)
+{
+	Camera::SetRotation(x, y, z);
+}
+
+D3DXVECTOR3 DxCamera::GetPosition()
 {
 	return D3DXVECTOR3(m_posX, m_posY, m_posZ);
 }
 
-void Camera::SetPosition(float x, float y, float z)
-{
-	m_posX = x;
-	m_posY = y;
-	m_posZ = z;
-	return;
-}
-
-void Camera::SetRotation(float x, float y, float z)
-{
-	m_rotX = x;
-	m_rotY = y;
-	m_rotZ = z;
-	return;
-}
-
-D3DXVECTOR3 Camera::GetRotation()
+D3DXVECTOR3 DxCamera::GetRotation()
 {
 	return D3DXVECTOR3(m_rotX, m_rotY, m_rotZ);
 }
 
-void Camera::GetViewMatrix(D3DXMATRIX& viewMatrix)
+void DxCamera::GetViewMatrix(D3DXMATRIX& viewMatrix)
 {
 	viewMatrix = m_viewMatrix;
 	return;
 }
 
-D3DXMATRIX* Camera::SetViewMatrix()
+D3DXMATRIX* DxCamera::SetViewMatrix()
 {
 	return &m_viewMatrix;
 }
