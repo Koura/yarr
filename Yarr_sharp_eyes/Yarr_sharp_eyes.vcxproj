@@ -99,6 +99,7 @@
     <ClCompile Include="D3D10Renderer.cpp" />
     <ClCompile Include="DxCamera.cpp" />
     <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="DX10Model.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Yarr\Window32.h" />
@@ -107,6 +108,7 @@
     <ClInclude Include="DxCamera.h" />
     <ClInclude Include="DxRenderer.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="DX10Model.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Yarr\Yarr.vcxproj">
