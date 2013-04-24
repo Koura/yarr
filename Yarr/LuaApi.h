@@ -18,4 +18,5 @@ private:
 
 namespace lApi{
 	void Print(std::string);
+	void Printi(int);
 }

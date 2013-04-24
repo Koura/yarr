@@ -83,9 +83,16 @@ void CoreSystem::Run()
 	done = false;
 	while(!done) 
 	{
-		Reload();
-		luabind::call_function<void>(m_LuaState, "update");
-
+		try{
+			Reload();
+		}catch(luabind::error &sError){
+			lApi::Print("lua reload error");
+		}
+		try{
+			luabind::call_function<void>(m_LuaState, "update");
+		}catch(luabind::error &sError){
+			lApi::Print("lua update error");
+		}
 		if(!m_window->Update()) 
 		{
 			done = true;

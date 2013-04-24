@@ -25,7 +25,9 @@ void LuaApi::RegisterToLua()
 {
 	luabind::module(m_luaState) [
 		luabind::def("print", &lApi::Print)
-		
+	];
+	luabind::module(m_luaState) [
+		luabind::def("printi", &lApi::Printi)
 	];
 	luabind::module(m_luaState) [
 		luabind::class_<Entity>("Entity")
@@ -44,4 +46,9 @@ void LuaApi::RegisterToLua()
 void lApi::Print(std::string str)
 {
 	std::cout << str << std::endl;
+}
+
+void lApi::Printi(int i)
+{
+	std::cout << i << std::endl;
 }
