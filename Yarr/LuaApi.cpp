@@ -19,6 +19,7 @@ LuaApi::~LuaApi()
 }
 
 #include "Entity.h"
+#include "Scene.h"
 
 void LuaApi::RegisterToLua()
 {
@@ -32,6 +33,11 @@ void LuaApi::RegisterToLua()
 		.def("SetPosition", &Entity::SetPosition)
 		//.def("GetPosition", &Entity::GetPosition)
 		//.def("SetPosition", &Entity::SetPosition)
+	];
+	luabind::module(m_luaState) [
+		luabind::class_<Scene>("Scene")
+		.def(luabind::constructor<>())
+		.def("NewEntity", (const Entity& (Scene::*)() const)&Scene::NewEntity)
 	];
 }
 
