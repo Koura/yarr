@@ -5,6 +5,7 @@ CoreSystem::CoreSystem()
 {
 	m_window = 0;
 	m_renderer = 0;
+	m_audio = 0;
 }
 
 CoreSystem::CoreSystem(const CoreSystem& other)
@@ -20,15 +21,23 @@ bool CoreSystem::Initialize()
 	int x, y;
 	x = 800;
 	y = 600;
+
 	if(!m_window->Create(L"YARR", x, y))
 	{
 		return false;
 	}
+	
 	return true;
 }
 
 void CoreSystem::Shutdown()
 {
+
+	if(m_audio)
+	{
+		delete m_audio;
+		m_audio = 0;
+	}
 	if(m_renderer)
 	{
 		delete m_renderer;
@@ -40,6 +49,7 @@ void CoreSystem::Shutdown()
 		delete m_window;
 		m_window = 0;
 	}
+
 	return;
 }
 
@@ -69,4 +79,14 @@ void CoreSystem::SetGraphics(IRenderer* iRenderer)
 bool CoreSystem::InitGraphics()
 {
 	return true;
+}
+
+bool CoreSystem::InitAudio()
+{
+	if (m_audio->Initialize())
+	{
+		return true;
+	}
+
+	return false;
 }

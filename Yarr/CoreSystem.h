@@ -3,6 +3,7 @@
 
 #include "GenWindow.h"
 #include "IRenderer.h"
+#include "AudioEngine.h"
 
 class CoreSystem
 {
@@ -17,9 +18,11 @@ public:
 	void SetGraphics();
 	void SetGraphics(IRenderer*);
 	bool InitGraphics();
+	bool InitAudio()
 
 private:
 	GenWindow* m_window;
 	IRenderer* m_renderer;
+	AudioEngine* m_audio;
 };
 #endif

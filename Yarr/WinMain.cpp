@@ -21,6 +21,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline,
 	{
 		return 0;
 	}
+	if(!System->InitAudio())
+	{
+		return 0;
+	}
 	if(System->InitGraphics())
 	{
 		System->Run();
