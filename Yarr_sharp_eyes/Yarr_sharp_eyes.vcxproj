@@ -94,21 +94,21 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Yarr\Window32.cpp" />
     <ClCompile Include="ColorShader.cpp" />
     <ClCompile Include="D3D10Renderer.cpp" />
     <ClCompile Include="DxCamera.cpp" />
+    <ClCompile Include="Window32.cpp" />
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="DX10Model.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Yarr\Window32.h" />
     <ClInclude Include="ColorShader.h" />
     <ClInclude Include="D3D10Renderer.h" />
     <ClInclude Include="DxCamera.h" />
     <ClInclude Include="DxRenderer.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="DX10Model.h" />
+    <ClInclude Include="Window32.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Yarr\Yarr.vcxproj">
@@ -130,6 +130,9 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Effect</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4.0</ShaderModel>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Yarr_sharp_eyes.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
