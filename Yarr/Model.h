@@ -3,27 +3,6 @@
 
 #include <fstream>
 
-struct MyVec3
-{
-	float x;
-	float y;
-	float z;
-};
-
-struct Color
-{
-	float r;
-	float g;
-	float b;
-	float a;
-};
-
-struct VertexType
-{
-	MyVec3 position;
-	Color color;
-};
-
 class Model
 {
 
@@ -45,7 +24,7 @@ public:
 private:
 	bool LoadPlainModel(char*);
 	void ReleaseModel();
-private:
+protected:
 	int m_vertexCount, m_indexCount;
 	ModelType* m_model;
 };
