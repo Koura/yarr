@@ -2,7 +2,6 @@
 #include "Entity.h"
 
 Scene::Scene()
-	: m_entityList()
 {
 }
 
@@ -23,14 +22,16 @@ void Scene::Shutdown()
 {
 }
 
-bool Scene::NewEntity()
+Entity* Scene::NewEntity()
 {
-	return true;
+	Entity* new_entity = new Entity();
+	//m_entityList.insert(*new_entity);
+	return new_entity;
 }
 
 void Scene::GetEntityList(std::set<Entity>& entityList)
 {
-	entityList = m_entityList;
+	//entityList = m_entityList;
 	return;
 }
 

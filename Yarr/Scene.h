@@ -10,9 +10,9 @@ public:
 	~Scene();
 	bool Initialize();
 	void Shutdown();
-	bool NewEntity();
+	Entity* NewEntity();
 	void GetEntityList(std::set<Entity>&);
 
 private:
-	std::set<Entity> m_entityList;
+	//std::set<Entity> m_entityList;
 };

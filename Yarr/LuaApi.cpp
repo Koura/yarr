@@ -26,7 +26,7 @@ void LuaApi::RegisterToLua()
 	luabind::module(m_luaState) [
 		luabind::def("print", &lApi::Print)
 	];
-	luabind::module(m_luaState) [
+	luabind::module(m_luaState) [	//TODO: find out how to add overloads for static static functions
 		luabind::def("printi", &lApi::Printi)
 	];
 	luabind::module(m_luaState) [
@@ -39,7 +39,7 @@ void LuaApi::RegisterToLua()
 	luabind::module(m_luaState) [
 		luabind::class_<Scene>("Scene")
 		.def(luabind::constructor<>())
-		.def("NewEntity", (const Entity& (Scene::*)() const)&Scene::NewEntity)
+		.def("NewEntity", (Entity& (Scene::*)())&Scene::NewEntity)
 	];
 }
 
