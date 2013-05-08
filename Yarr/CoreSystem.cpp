@@ -36,7 +36,11 @@ bool CoreSystem::Initialize(int screenWidth, int screenHeight)
 	}
 	//luabind
 	m_LuaState = luaL_newstate();
-	luaL_openlibs(m_LuaState);
+	luaopen_base(m_LuaState);
+    luaopen_string(m_LuaState);
+    luaopen_math(m_LuaState);
+    luaopen_io(m_LuaState);
+    luaopen_table(m_LuaState);
 	luabind::open(m_LuaState);
 	m_luaApi = new LuaApi(m_LuaState);
 	m_luaApi->RegisterToLua();
@@ -106,7 +110,6 @@ void CoreSystem::Run()
 
 void CoreSystem::Reload()
 {
-	
 	luaL_dofile(
 		m_LuaState,
 		"../Game/init.lua"
