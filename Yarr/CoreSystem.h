@@ -2,7 +2,8 @@
 
 #include "GenWindow.h"
 #include "IRenderer.h"
-class Scene;
+#include "Scene.h"
+class ModelFactory;
 
 class LuaApi;
 extern "C" {
@@ -22,6 +23,7 @@ public:
 	void SetGraphics();
 	void SetGraphics(IRenderer*);
 	bool InitGraphics(int, int);
+	void InitScene(ModelFactory*);
 	void Reload();
 
 private:

@@ -96,6 +96,7 @@
   <ItemGroup>
     <ClCompile Include="ColorShader.cpp" />
     <ClCompile Include="D3D10Renderer.cpp" />
+    <ClCompile Include="DX10ModelFactory.cpp" />
     <ClCompile Include="DxCamera.cpp" />
     <ClCompile Include="Window32.cpp" />
     <ClCompile Include="WinMain.cpp" />
@@ -104,6 +105,7 @@
   <ItemGroup>
     <ClInclude Include="ColorShader.h" />
     <ClInclude Include="D3D10Renderer.h" />
+    <ClInclude Include="DX10ModelFactory.h" />
     <ClInclude Include="DxCamera.h" />
     <ClInclude Include="DxRenderer.h" />
     <ClInclude Include="resource.h" />

@@ -1,10 +1,11 @@
 #pragma once
 
 #include "Model.h"
+#include "CRefCounted.h"
 #include <d3d10.h>
 #include <d3dx10math.h>
 
-class DX10Model : public Model
+class DX10Model : public Model, public CRefCounted
 {
 private:
 	struct VertexType

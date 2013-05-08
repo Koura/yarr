@@ -1,6 +1,7 @@
 #include "DX10Model.h"
 
 DX10Model::DX10Model()
+	:m_vertexBuffer(0), m_indexBuffer(0)
 {
 }
 
@@ -49,6 +50,7 @@ bool DX10Model::InitializeBuffers(ID3D10Device* device, float r, float g, float 
 	D3D10_SUBRESOURCE_DATA vertexData, indexData;
 	HRESULT result;
 	int i;
+
 	vertices = new VertexType[m_vertexCount];
 	if(!vertices)
 	{
@@ -59,12 +61,14 @@ bool DX10Model::InitializeBuffers(ID3D10Device* device, float r, float g, float 
 	{
 		return false;
 	}
+	
 	for(i=0; i<m_vertexCount; i++)
 	{
 		vertices[i].position = D3DXVECTOR3(m_model[i].x, m_model[i].y, m_model[i].z);
 		vertices[i].color = D3DXVECTOR4(r, g, b, a);
 		indices[i] = i;
 	}
+
 	vertexBufferDesc.Usage = D3D10_USAGE_DEFAULT;
 	vertexBufferDesc.ByteWidth = sizeof(VertexType)* m_vertexCount;
 	vertexBufferDesc.BindFlags = D3D10_BIND_VERTEX_BUFFER;
@@ -77,7 +81,7 @@ bool DX10Model::InitializeBuffers(ID3D10Device* device, float r, float g, float 
 		return false;
 	}
 	indexBufferDesc.Usage = D3D10_USAGE_DEFAULT;
-	indexBufferDesc.ByteWidth = sizeof(unsigned long)*m_indexCount;
+	indexBufferDesc.ByteWidth = sizeof(unsigned long) * m_indexCount;
 	indexBufferDesc.BindFlags = D3D10_BIND_INDEX_BUFFER;
 	indexBufferDesc.CPUAccessFlags = 0;
 	indexBufferDesc.MiscFlags = 0;

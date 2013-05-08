@@ -10,7 +10,7 @@ public:
     virtual void SetRotation(float, float, float);
 	virtual void SetPosition(float, float, float);
 	
-private:
+protected:
 	float m_posX, m_posY, m_posZ;
 	float m_rotX, m_rotY, m_rotZ;
 };

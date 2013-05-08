@@ -11,6 +11,7 @@ D3D10Renderer::D3D10Renderer()
 	m_rasterState = 0;
 	m_colorShader = 0;
 	m_camera = 0;
+	m_model = 0;
 }
 
 D3D10Renderer::D3D10Renderer(const D3D10Renderer& other)
@@ -28,16 +29,15 @@ void D3D10Renderer::SetHWND(HWND hwnd)
 
 bool D3D10Renderer::Initialize(int screenWidth, int screenHeight)
 {
-	m_camera = new DxCamera();
-	if(!m_camera)
-	{
-		return false;
-	}
 	HRESULT result;
 	IDXGIFactory* factory;
 	IDXGIAdapter* adapter;
 	IDXGIOutput* adapterOutput;
 	unsigned int numModes, i, numerator, denominator;
+	numModes = 0;
+	i = 0;
+	numerator = 0;
+	denominator = 0;
 	DXGI_MODE_DESC* displayModeList;
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
 	ID3D10Texture2D* backBufferPtr;
@@ -217,16 +217,27 @@ bool D3D10Renderer::Initialize(int screenWidth, int screenHeight)
 	D3DXMatrixIdentity(&m_worldMatrix);
 	D3DXMatrixOrthoLH(&m_orthoMatrix, (float)screenWidth, (float)screenHeight, SCREEN_NEAR, SCREEN_DEPTH);
 	
-
+	m_camera = new DxCamera();
+	if(!m_camera)
+	{
+		return false;
+	}
+	m_camera->SetPosition(0.0f, 0.0f, -10.0f);
 	//////LOAD THE SHADER
 	InitializeShader(L"../Yarr_sharp_eyes/Resources/color.fx");
-	
-	
+	m_model = new DX10Model();
+	m_model->Initialize("../Game/Resources/Models/cube.txt", m_device, 0.5f, 1.0f, 0.0, 1.0);
 	return true;
 }
 
 void D3D10Renderer::Shutdown()
 {
+	if(m_model)
+	{
+		m_model->Shutdown();
+		delete m_model;
+		m_model = 0;
+	}
 	if(m_camera)
 	{
 		delete m_camera;
@@ -338,10 +349,22 @@ bool D3D10Renderer::Frame()
 bool D3D10Renderer::Render()
 {
 	D3DXMATRIX viewMatrix;
-	BeginScene(0.5f, 0.5f, 0.5f, 1.0f);
-	SetUpCameraView();
+	BeginScene(0.1f, 0.1f, 0.1f, 1.0f);
+	m_camera->Render();
 	m_camera->GetViewMatrix(viewMatrix);
-	m_colorShader->Render(m_device, 0, m_worldMatrix, viewMatrix, m_projectionMatrix);
+	std::set<IntrusivePtr<Entity> > entitySet = m_scene->GetEntitySet();
+	Entity* ent = 0;
+	POSITION modelPosition;
+	DX10Model* model;
+	for(std::set<IntrusivePtr<Entity> > ::const_iterator it = entitySet.begin(); it != entitySet.end(); ++it) 
+	{
+		ent = it->GetPtr();
+		modelPosition = ent->GetPosition();
+		D3DXMatrixTranslation(&m_worldMatrix, modelPosition.x, modelPosition.y, modelPosition.z);
+		model = m_modelFactory->GetModelByName(ent->GetName());
+		model->Render(m_device);
+		m_colorShader->Render(m_device, model->GetIndexCount(), m_worldMatrix, viewMatrix, m_projectionMatrix);
+	}
 	EndScene();
 	return true;
 }
@@ -349,6 +372,11 @@ bool D3D10Renderer::Render()
 void D3D10Renderer::SetScene(Scene* scene)
 {
 	m_scene = scene;
+}
+
+void D3D10Renderer::SetModelFactory(DX10ModelFactory* modelFactory)
+{
+	m_modelFactory = modelFactory;
 }
 
 void D3D10Renderer::SetUpCameraView()
