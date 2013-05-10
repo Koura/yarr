@@ -118,6 +118,7 @@ void CoreSystem::Reload()
 		"../Game/update.lua"
 	);
 	luabind::call_function<void>(m_LuaState, "init");
+	luabind::call_function<void>(m_LuaState, "setScene")[m_renderer->GetScene()];
 }
 
 void CoreSystem::SetWindow(GenWindow* genWin)
