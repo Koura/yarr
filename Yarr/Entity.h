@@ -1,7 +1,9 @@
 #ifndef _ENTITY_H_
 #define _ENTITY_H_
 
+#include "CRefCounted.h"
 #include <cmath>
+#include <string>
 
 struct POSITION
 {
@@ -10,17 +12,19 @@ struct POSITION
 	float z;
 };
 
-class Entity
+class Entity : public CRefCounted
 {
 public:
 	Entity();
+	Entity(std::string, float, float, float);
 	Entity(const Entity&);
 	~Entity();
 	POSITION GetPosition();
 	void SetPosition(float, float, float);
-
+	std::string GetName() const;
 private:
 	float m_posX, m_posY, m_posZ;
+	std::string m_entityName;
 };
 
 #endif

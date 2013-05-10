@@ -1,6 +1,5 @@
 #include "CoreSystem.h"
 #include "LuaApi.h"
-#include "Scene.h"
 
 extern "C" {
   #include "lua.h"
@@ -137,8 +136,12 @@ bool CoreSystem::InitGraphics(int screenWidth, int screenHeight)
 	{
 		return false;
 	}
-	m_renderer->SetScene(m_scene);
 	return true;
 }
 
-
+void CoreSystem::InitScene(ModelFactory* modelFactory)
+{
+	m_scene->Initialize(modelFactory);
+	m_renderer->SetScene(m_scene);
+	m_scene->NewEntity("Bullocks", 0.0f,0.0f,0.0f);
+}

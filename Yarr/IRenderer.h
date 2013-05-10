@@ -1,7 +1,7 @@
 #ifndef _IRENDERER_H_
 #define _IRENDERER_H_
 
-class Scene;
+#include "Scene.h"
 
 class IRenderer
 {

@@ -9,8 +9,7 @@ class Model
 struct ModelType
 {
 	float x, y, z;
-	float tu, tv;
-	float nx, ny, nz;
+    float r, g, b, a;
 };
 
 public:
@@ -20,7 +19,7 @@ public:
 
 	bool Initialize(char*);
 	void Shutdown();
-	int GetIndexCount();
+	virtual int GetIndexCount();
 private:
 	bool LoadPlainModel(char*);
 	void ReleaseModel();

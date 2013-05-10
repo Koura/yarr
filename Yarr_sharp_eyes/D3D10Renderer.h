@@ -8,6 +8,7 @@
 #include "IRenderer.h"
 #include "ColorShader.h"
 #include "DxCamera.h"
+#include "DX10ModelFactory.h"
 #include <D3D10.h>
 #include <DXGI.h>
 #include <D3DX10.h>
@@ -35,6 +36,7 @@ public:
 	void GetWorldMatrix(D3DXMATRIX&);
 	void GetOrthoMatrix(D3DXMATRIX&);
 	void SetHWND(HWND);
+	void SetModelFactory(DX10ModelFactory*);
 	bool InitializeShader(WCHAR*);
 
 private:
@@ -56,5 +58,7 @@ private:
 	Scene* m_scene;
 	ColorShader* m_colorShader;
 	DxCamera* m_camera;
+	DX10ModelFactory* m_modelFactory;
+	DX10Model* m_model;
 };
 #endif
