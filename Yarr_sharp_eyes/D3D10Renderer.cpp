@@ -222,7 +222,7 @@ bool D3D10Renderer::Initialize(int screenWidth, int screenHeight)
 	{
 		return false;
 	}
-	m_camera->SetPosition(0.0f, 0.0f, -10.0f);
+	m_camera->SetPosition(0.0f, 6.0f, -20.0f);
 	//////LOAD THE SHADER
 	InitializeShader(L"../Yarr_sharp_eyes/Resources/color.fx");
 	m_model = new DX10Model();
@@ -420,4 +420,9 @@ bool D3D10Renderer::InitializeShader(WCHAR* shaderfilename)
 		return false;
 	}
 	return true;
+}
+
+Scene* D3D10Renderer::GetScene()
+{
+	return m_scene;
 }

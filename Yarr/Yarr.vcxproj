@@ -114,6 +114,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GenWindow.h" />
+    <ClInclude Include="IntrusivePtr.h" />
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="LuaApi.h" />
     <ClInclude Include="Model.h" />
