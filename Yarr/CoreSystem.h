@@ -19,7 +19,6 @@ public:
 	void Shutdown();
 	void Run();
 	void SetWindow(GenWindow*);
-	void SetGraphics();
 	void SetGraphics(IRenderer*);
 	bool InitGraphics(int, int);
 	void Reload();
