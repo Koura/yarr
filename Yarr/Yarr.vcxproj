@@ -117,6 +117,7 @@
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="LuaApi.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelFactory.h" />
     <ClInclude Include="Scene.h" />
   </ItemGroup>
   <ItemGroup>

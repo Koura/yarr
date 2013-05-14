@@ -16,7 +16,8 @@ public:
 	void SetRotation(float, float, float);
 	D3DXVECTOR3 GetPosition();
 	void SetPosition(float, float, float);
-	
+	void Render();
+
 	D3DXVECTOR3 GetRotation();
 	void GetViewMatrix(D3DXMATRIX&);
 	D3DXMATRIX* SetViewMatrix();

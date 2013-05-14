@@ -48,14 +48,7 @@ bool Model::LoadPlainModel(char* filename)
 	fin.get(input);
 	while(input != ':')
 	{
-		if(!fin.eof())
-		{
 			fin.get(input);
-		} 
-		else
-		{
-			return false;
-		}
 	}
 	fin >> m_vertexCount;
 	m_indexCount = m_vertexCount;
@@ -72,15 +65,9 @@ bool Model::LoadPlainModel(char* filename)
 	fin.get(input);
 	fin.get(input);
 	for(i=0; i<m_vertexCount; i++)
-	{
-		if(!fin.eof())
-		{
+	{		
 			fin >> m_model[i].x >> m_model[i].y >> m_model[i].z;
-		}
-		else
-		{
-			return false;
-		}
+			m_model[i].r = 1.0f, m_model[i].g = 0.0f, m_model[i].b = 0.0f, m_model[i].a = 1.0f;
 	}
 	fin.close();
 	return true;
