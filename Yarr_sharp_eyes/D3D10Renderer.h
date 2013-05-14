@@ -38,6 +38,7 @@ public:
 	void SetHWND(HWND);
 	void SetModelFactory(DX10ModelFactory*);
 	bool InitializeShader(WCHAR*);
+	Scene* GetScene();
 
 private:
 	bool Render();

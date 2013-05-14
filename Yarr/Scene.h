@@ -12,7 +12,7 @@ public:
 	~Scene();
 	bool Initialize(ModelFactory*);
 	void Shutdown();
-	bool NewEntity(std::string, float, float, float);
+	Entity* NewEntity(std::string, float, float, float);
 	const std::set<IntrusivePtr<Entity> >& GetEntitySet();
 private:
 	std::set<IntrusivePtr<Entity> > m_entitySet;

@@ -62,9 +62,6 @@
     <ClInclude Include="ModelFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CRefCounted.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IntrusivePtr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
