@@ -76,5 +76,24 @@ namespace YarrTest
 			Assert::AreEqual<float>(5.0f, cam->GetRotation().z);
 		}
 			
+		TEST_METHOD(NewModelFactoryWithCorrectValues)
+		{
+		}
+
+		TEST_METHOD(AddingModelToFactory)
+		{
+		}
+		
+		TEST_METHOD(AddingMultipleUniqueModelsToFactory)
+		{
+		}
+
+		TEST_METHOD(AddingMultipleSameModelsToFactory)
+		{
+		}
+
+		TEST_METHOD(CanGetModelByName)
+		{
+		}
 	};
 }
