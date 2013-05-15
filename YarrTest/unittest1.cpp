@@ -3,9 +3,11 @@
 #pragma comment(lib, "d3d10.lib")
 #pragma comment(lib, "d3dx10.lib")
 #pragma comment(lib, "dxgi.lib")
-#include "CppUnitTest.h"
+#include "CppUnitTest.h"                                                                                                                                                                                                                                                                                                                                                                                                   
 #include "Entity.h"
 #include "DxCamera.h"
+#include "Model.h"
+#include "Scene.h"
 #include <D3D10.h>
 #include <DXGI.h>
 #include <D3DX10.h>
@@ -75,25 +77,33 @@ namespace YarrTest
 			Assert::AreEqual<float>(4.0f, cam->GetRotation().y);
 			Assert::AreEqual<float>(5.0f, cam->GetRotation().z);
 		}
-			
-		TEST_METHOD(NewModelFactoryWithCorrectValues)
+	
+		TEST_METHOD(ModelHasCorrectAmountofIndexes)
 		{
+			Model* model = new Model;
+			model->Initialize("../Game/Resources/Models/cube.txt");
+			Assert::AreEqual<int>(36, model->GetIndexCount());
+		}
+		TEST_METHOD(SceneHasCorrectAmountOfEntities)
+		{
+			Scene* scene = new Scene;
+			scene->NewEntity("YARR", 1.0f, 1.0f, 1.0f);
+			scene->NewEntity("YARR", 1.0f, 1.0f, 1.0f);
+			scene->NewEntity("YARR", 1.0f, 1.0f, 1.0f);
+			scene->NewEntity("YARR", 1.0f, 1.0f, 1.0f);
+			std::set<IntrusivePtr<Entity> > entitySet = scene->GetEntitySet();
+			Assert::AreEqual<int>(4, entitySet.size());
 		}
 
-		TEST_METHOD(AddingModelToFactory)
+		TEST_METHOD(AddedEntitiesHaveCorrectValuesInSet)
 		{
-		}
-		
-		TEST_METHOD(AddingMultipleUniqueModelsToFactory)
-		{
-		}
-
-		TEST_METHOD(AddingMultipleSameModelsToFactory)
-		{
-		}
-
-		TEST_METHOD(CanGetModelByName)
-		{
+			Scene* scene = new Scene;
+			scene->NewEntity("YARR", 1.0f, 1.0f, 1.0f);
+			std::set<IntrusivePtr<Entity> > entitySet = scene->GetEntitySet();
+			Assert::AreEqual<std::string>("YARR",entitySet.begin()->GetPtr()->GetName());
+			Assert::AreEqual<float>(1.0f,entitySet.begin()->GetPtr()->GetPosition().x);
+			Assert::AreEqual<float>(1.0f,entitySet.begin()->GetPtr()->GetPosition().y);
+			Assert::AreEqual<float>(1.0f,entitySet.begin()->GetPtr()->GetPosition().z);
 		}
 	};
 }

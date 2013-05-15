@@ -96,6 +96,9 @@
   <ItemGroup>
     <ClCompile Include="..\Yarr\Camera.cpp" />
     <ClCompile Include="..\Yarr\Entity.cpp" />
+    <ClCompile Include="..\Yarr\Model.cpp" />
+    <ClCompile Include="..\Yarr\Scene.cpp" />
+    <ClCompile Include="..\Yarr_sharp_eyes\ColorShader.cpp" />
     <ClCompile Include="..\Yarr_sharp_eyes\DxCamera.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
