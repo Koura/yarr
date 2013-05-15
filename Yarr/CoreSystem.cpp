@@ -86,14 +86,13 @@ void CoreSystem::Run()
 	done = false;
 	while(!done) 
 	{
-		/*
 		ReloadScripts(); //move this to lua as soon as possible
 		try{
 			luabind::call_function<void>(m_LuaState, "update");
 		}catch(luabind::error &sError){
 			lApi::Print("lua update error");
 		}
-		*/
+		
 		if(!m_window->Update()) 
 		{
 			done = true;
