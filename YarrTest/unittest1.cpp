@@ -75,5 +75,6 @@ namespace YarrTest
 			Assert::AreEqual<float>(4.0f, cam->GetRotation().y);
 			Assert::AreEqual<float>(5.0f, cam->GetRotation().z);
 		}
+			
 	};
 }

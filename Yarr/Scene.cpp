@@ -29,6 +29,14 @@ void Scene::Shutdown()
 	}
 }
 
+Entity* Scene::NewEntity()
+{
+	Entity* tempEnt = new Entity();
+	m_modelFactory->CreateModel(tempEnt->GetName());
+	m_entitySet.insert(IntrusivePtr<Entity>(tempEnt));
+	return tempEnt;
+}
+
 Entity* Scene::NewEntity(std::string entityName, float x, float y, float z)
 {
 	Entity* tempEnt = new Entity(entityName, x, y, z);

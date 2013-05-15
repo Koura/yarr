@@ -2,10 +2,21 @@ function add(first, second)
   return first + second
 end
 
-function setScene(_scene)
-  scene=_scene
+function init()
+	print("----")
+	print("init")
+	print("----")
+	if frames==nil then
+		frames=0
+	end
 end
 
-function init()
-	--print("moi!!!")
+
+
+function test(testattava)
+	if testattava==nil then 
+	print("hyy")
+	else
+	print("jee")
+	end
 end

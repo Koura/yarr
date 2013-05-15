@@ -1,10 +1,11 @@
 function update()
-	print("moi !")
-	--local entity= Entity()
-	local i=0
-	--local j=scene.NewEntity("moi",1,2,3)
-	printi(10)
-	--for i = 5, 11, 0.5 do
-    --     print(""+i)
-    --end
+	print("update")
+	frames=frames+1
+	print("frames: " .. frames)
+	
+	if frames % 100 == 1 then 
+		local j=scene:NewEntity()
+		j:SetPosition(math.sin(frames)*5,math.cos(frames)*10,3)
+	end
 end
+

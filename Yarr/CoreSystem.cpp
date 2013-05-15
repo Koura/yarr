@@ -35,11 +35,7 @@ bool CoreSystem::Initialize(int screenWidth, int screenHeight)
 	}
 	//luabind
 	m_LuaState = luaL_newstate();
-	luaopen_base(m_LuaState);
-    luaopen_string(m_LuaState);
-    luaopen_math(m_LuaState);
-    luaopen_io(m_LuaState);
-    luaopen_table(m_LuaState);
+	luaL_openlibs(m_LuaState);
 	luabind::open(m_LuaState);
 	m_luaApi = new LuaApi(m_LuaState);
 	m_luaApi->RegisterToLua();
@@ -86,11 +82,16 @@ void CoreSystem::Run()
 	done = false;
 	while(!done) 
 	{
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 4a544e4b47d802076505d6a1e7f9a38e8802765a
 		ReloadScripts(); //move this to lua as soon as possible
 		try{
 			luabind::call_function<void>(m_LuaState, "update");
 		}catch(luabind::error &sError){
 			lApi::Print("lua update error");
+			ReloadScripts();
 		}
 		
 		if(!m_window->Update()) 
@@ -112,6 +113,7 @@ void CoreSystem::ReloadScripts(){
 		}
 }
 
+
 void CoreSystem::Reload()
 {
 	luaL_dofile(
@@ -123,7 +125,7 @@ void CoreSystem::Reload()
 		"../Game/update.lua"
 	);
 	luabind::call_function<void>(m_LuaState, "init");
-	luabind::call_function<void>(m_LuaState, "setScene")[m_renderer->GetScene()];
+	luabind::globals(m_LuaState)["scene"] = m_renderer->GetScene();
 }
 
 void CoreSystem::SetWindow(GenWindow* genWin)
@@ -149,6 +151,4 @@ void CoreSystem::InitScene(ModelFactory* modelFactory)
 {
 	m_scene->Initialize(modelFactory);
 	m_renderer->SetScene(m_scene);
-	m_scene->NewEntity("Bullocks", -1.0f,0.0f,0.0f);
-	m_scene->NewEntity("RATMAN", 1.0f, 3.0f, 1.0f);
 }
