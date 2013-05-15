@@ -4,7 +4,6 @@
 //
 
 #pragma once
-
 #include "targetver.h"
 
 // Headers for CppUnitTest

@@ -82,7 +82,10 @@ void CoreSystem::Run()
 	done = false;
 	while(!done) 
 	{
+<<<<<<< HEAD
+=======
 		
+>>>>>>> 4a544e4b47d802076505d6a1e7f9a38e8802765a
 		ReloadScripts(); //move this to lua as soon as possible
 		try{
 			luabind::call_function<void>(m_LuaState, "update");
