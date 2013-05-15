@@ -86,11 +86,7 @@ void CoreSystem::Run()
 	done = false;
 	while(!done) 
 	{
-		try{
-			Reload();
-		}catch(luabind::error &sError){
-			lApi::Print("lua reload error");
-		}
+		ReloadScripts(); //move this to lua as soon as possible
 		try{
 			luabind::call_function<void>(m_LuaState, "update");
 		}catch(luabind::error &sError){
@@ -105,6 +101,14 @@ void CoreSystem::Run()
 			m_renderer->Frame();
 		}
 	}
+}
+
+void CoreSystem::ReloadScripts(){
+		try{
+			Reload();
+		}catch(luabind::error &sError){
+			lApi::Print("lua reload error");
+		}
 }
 
 void CoreSystem::Reload()

@@ -20,6 +20,7 @@ public:
 	void Shutdown();
 	void Run();
 	void SetWindow(GenWindow*);
+	void ReloadScripts();
 	void SetGraphics(IRenderer*);
 	bool InitGraphics(int, int);
 	void InitScene(ModelFactory*);
