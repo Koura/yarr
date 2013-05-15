@@ -5,7 +5,7 @@ function update()
 	
 	if frames % 100 == 1 then 
 		local j=scene:NewEntity()
-		j:SetPosition(math.sin(frames)*5,math.cos(frames)*10,3)
+		j:SetPosition(math.sin(frames)*5,math.cos(frames)*10,3+math.sin(frames*7)*3)
 	end
 end
 

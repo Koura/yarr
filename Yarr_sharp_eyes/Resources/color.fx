@@ -17,11 +17,11 @@ struct PixelInputType
 PixelInputType ColorVertexShader(VertexInputType input)
 {
 	PixelInputType output;
-	input.position.w = 1.0f;
+	//input.position.w = 1.0f;
 	output.position = mul(input.position, worldMatrix);
 	output.position = mul(output.position, viewMatrix);
 	output.position = mul(output.position, projectionMatrix);
-	output.color = input.color*output.position*0.04+.5;
+	output.color = (input.color*output.position*0.04+.5)/(input.position.z+2);
 	return output;
 }
 
