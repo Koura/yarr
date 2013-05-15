@@ -37,6 +37,12 @@ void LuaApi::RegisterToLua()
 		.def("GetName", &Entity::GetName)
 	];
 	luabind::module(m_luaState) [
+		luabind::class_<POSITION>("POSITION")
+			.def_readwrite("x", &POSITION::x)
+			.def_readwrite("y", &POSITION::y)
+			.def_readwrite("z", &POSITION::z)
+	];
+	luabind::module(m_luaState) [
 		luabind::class_<Scene>("Scene")
 		.def(luabind::constructor<>())
 		.def("NewEntity", (Entity* (Scene::*)(void))&Scene::NewEntity)

@@ -9,6 +9,11 @@ function init()
 	if frames==nil then
 		frames=0
 	end
+	
+	if entities==nil then 
+		entities={}
+	end
+	
 end
 
 
