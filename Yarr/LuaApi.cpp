@@ -33,13 +33,13 @@ void LuaApi::RegisterToLua()
 		luabind::class_<Entity>("Entity")
 		.def(luabind::constructor<>())
 		.def("SetPosition", &Entity::SetPosition)
-		//.def("GetPosition", &Entity::GetPosition)
-		//.def("SetPosition", &Entity::SetPosition)
+		.def("GetPosition", &Entity::GetPosition)
+		.def("GetName", &Entity::GetName)
 	];
 	luabind::module(m_luaState) [
 		luabind::class_<Scene>("Scene")
 		.def(luabind::constructor<>())
-		.def("NewEntity", (Entity& (Scene::*)())&Scene::NewEntity)
+		.def("NewEntity", (Entity* (Scene::*)(void))&Scene::NewEntity)
 	];
 }
 

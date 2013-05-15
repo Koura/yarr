@@ -86,14 +86,15 @@ void CoreSystem::Run()
 	done = false;
 	while(!done) 
 	{
-		/*
+		
 		ReloadScripts(); //move this to lua as soon as possible
 		try{
 			luabind::call_function<void>(m_LuaState, "update");
 		}catch(luabind::error &sError){
 			lApi::Print("lua update error");
+			ReloadScripts();
 		}
-		*/
+		
 		if(!m_window->Update()) 
 		{
 			done = true;
@@ -113,6 +114,7 @@ void CoreSystem::ReloadScripts(){
 		}
 }
 
+
 void CoreSystem::Reload()
 {
 	luaL_dofile(
@@ -124,7 +126,7 @@ void CoreSystem::Reload()
 		"../Game/update.lua"
 	);
 	luabind::call_function<void>(m_LuaState, "init");
-	luabind::call_function<void>(m_LuaState, "setScene")[m_renderer->GetScene()];
+	luabind::globals(m_LuaState)["scene"] = m_renderer->GetScene();
 }
 
 void CoreSystem::SetWindow(GenWindow* genWin)
