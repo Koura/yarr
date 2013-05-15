@@ -144,6 +144,6 @@ void CoreSystem::InitScene(ModelFactory* modelFactory)
 {
 	m_scene->Initialize(modelFactory);
 	m_renderer->SetScene(m_scene);
-	//m_scene->NewEntity("Bullocks", -1.0f,0.0f,0.0f);
-	//m_scene->NewEntity("RATMAN", 1.0f, 3.0f, 1.0f);
+	m_scene->NewEntity("Bullocks", -1.0f,0.0f,0.0f);
+	m_scene->NewEntity("RATMAN", 1.0f, 3.0f, 1.0f);
 }
