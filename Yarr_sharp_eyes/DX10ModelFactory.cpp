@@ -18,9 +18,9 @@ void DX10ModelFactory::CreateModel(std::string modelName)
 {
 	if(m_device)
 	{
-		std::pair<std::string,IntrusivePtr<DX10Model> > insertion (modelName, IntrusivePtr<DX10Model>(new DX10Model));
-		insertion.second.GetPtr()->Initialize("../Game/Resources/Models/cube.txt", m_device, 1.0, 0.0, 0.0, 1.0);
-		m_modelMap.insert(insertion);
+		 std::pair<std::string,IntrusivePtr<DX10Model> >* insertion = new std::pair<std::string,IntrusivePtr<DX10Model> >(modelName, IntrusivePtr<DX10Model>(new DX10Model));
+		insertion->second.GetPtr()->Initialize("../Game/Resources/Models/cube.txt", m_device, 1.0, 0.0, 0.0, 1.0);
+		m_modelMap.insert(*insertion);
 	}
 }
 

@@ -1,6 +1,5 @@
 #include "Scene.h"
 #include "Entity.h"
-
 Scene::Scene()
 {
 	m_modelFactory = 0;
