@@ -39,7 +39,10 @@ AudioEngine::~AudioEngine()
 {
 }
 
-void CreateBuffersFromFiles()
+// Requires Boost. Iterates through a folder and creates buffers from
+// all of the .wav files. A buffer for default background music is
+// created separately. Maximum number of buffers is 64.
+ALboolean CreateBuffersFromFiles()
 {
 	int i = 1;
 	string tiedostonNimi;
@@ -52,6 +55,12 @@ void CreateBuffersFromFiles()
 
 	alGenBuffers(NUM_BUFFERS, Buffers);
 
+	if(alGetError() != AL_NO_ERROR)
+	{
+		printf("Buffers could not be created");
+		return AL_FALSE;
+	}
+
 	fs::path targetDir("./wavdata");
 	fs::directory_iterator it(targetDir), eod;
 
@@ -59,6 +68,12 @@ void CreateBuffersFromFiles()
 	alBufferData(Buffers[0], format, data, size, freq);
 	alutUnloadWAV(format, data, size, freq);
 	bufferNumeration.insert(make_pair("bgmusic.wav", 0));
+
+	if(alGetError() != AL_NO_ERROR)
+	{
+		printf("bgmusic.wav not found");
+		return AL_FALSE;
+	}
 
 	BOOST_FOREACH(fs::path const &p, make_pair(it, eod))
 	{
@@ -86,12 +101,16 @@ void CreateBuffersFromFiles()
 		i++;
 	}
 	
+	return AL_TRUE;
 }
 
+// Adds a source for the default background music and places it at listener position.
 ALboolean LoadALData()
 {
-
-	CreateBuffersFromFiles();
+	if (!CreateBuffersFromFiles())
+	{
+		return AL_FALSE;
+	}
 
 	alGenSources(NUM_SOURCES, Sources);
 
@@ -102,11 +121,14 @@ ALboolean LoadALData()
 	alSourcefv(Sources[numberOfSources], AL_VELOCITY, ListenerVel);
 	alSourcei (Sources[numberOfSources], AL_LOOPING,  AL_TRUE    );
 
+	if(alGetError() != AL_NO_ERROR)
+	{
+		printf("Could not create a source for default background music");
+		return AL_FALSE;
+	}
+
 	sourceNumeration.insert(make_pair("bgmusic.wav",numberOfSources));
 	numberOfSources++;
-
-	if(alGetError() != AL_NO_ERROR)
-		return AL_FALSE;
 
 	return AL_TRUE;
 }
@@ -134,15 +156,21 @@ bool AudioEngine::Initialize()
 	ALboolean al = LoadALData();
 
 	if(al == AL_FALSE)
+	{
 		return false;
+	}
 
 	SetListenerValues();
 
 	atexit(KillALData);
 
+	printf("AudioEngine ready");
 	return true;
 }
 
+// This plays a ******.wav named sound if it exists in the buffers. If there isn't a source,
+// it will be created, otherwise it will just play the sound.
+// Maximum number of sources simultaneously is 32.
 void AudioEngine::PlaySound(const std::string name, ALboolean loop, ALfloat sourcePos[], ALfloat sourceVel[])
 {
 	if (sourceNumeration.find(name) == sourceNumeration.end()) 
@@ -167,6 +195,11 @@ void AudioEngine::PlaySound(const std::string name, ALboolean loop, ALfloat sour
 			alSourcefv(Sources[numberOfSources], AL_VELOCITY, SourcesVel[numberOfSources]);
 			alSourcei (Sources[numberOfSources], AL_LOOPING,  loop    );
 
+			if(alGetError() != AL_NO_ERROR)
+			{
+				printf("Could not create a source");
+			}
+
 
 			sourceNumeration.insert(make_pair(name,numberOfSources));
 
@@ -175,6 +208,7 @@ void AudioEngine::PlaySound(const std::string name, ALboolean loop, ALfloat sour
 			alSourcePlay(Sources[sourceNumeration.at(name)]);
 
 		} else {
+			printf("Buffer with such name not found");
 			return;
 		}
 	} else {
@@ -191,6 +225,11 @@ void AudioEngine::PlaySound(const std::string name, ALboolean loop, ALfloat sour
 
 		alSourcefv(Sources[sourceNumeration.at(name)], AL_POSITION, SourcesPos[sourceNumeration.at(name)]);
 		alSourcefv(Sources[sourceNumeration.at(name)], AL_VELOCITY, SourcesVel[sourceNumeration.at(name)]);
+
+		if(alGetError() != AL_NO_ERROR)
+		{
+			printf("Could not update source position");
+		}
 
 		alSourcePlay(Sources[sourceNumeration.at(name)]);
 
@@ -214,7 +253,7 @@ void AudioEngine::PauseSound(const std::string name)
 	}
 }
 
-
+// Updates the position of a source using x, y and z coordinates.
 void AudioEngine::UpdateSourcePos(const std::string name, ALfloat sourcePos[])
 {
 
@@ -230,6 +269,7 @@ void AudioEngine::UpdateSourcePos(const std::string name, ALfloat sourcePos[])
 
 }
 
+// Same as above except without an array
 void AudioEngine::UpdateSourcePosFloats(const std::string name, ALfloat x, ALfloat y, ALfloat z)
 {
 	
@@ -245,6 +285,7 @@ void AudioEngine::UpdateSourcePosFloats(const std::string name, ALfloat x, ALflo
 
 }
 
+// Changes the listener position
 void AudioEngine::UpdateListenerValues(ALfloat lisPos[], ALfloat lisVel[], ALfloat lisOri[])
 {
 	ListenerPos[0] = lisPos[0];
