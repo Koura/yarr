@@ -1,5 +1,4 @@
-#ifndef _IRENDERER_H_
-#define _IRENDERER_H_
+#pragma once
 
 #include "Scene.h"
 
@@ -18,4 +17,3 @@ public:
 private:
 	virtual bool Render() = 0;
 };
-#endif

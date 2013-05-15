@@ -1,5 +1,5 @@
-#ifndef _GENWINDOW_H_
-#define _GENWINDOW_H_
+#pragma once
+
 class GenWindow
 {
 public:
@@ -11,5 +11,5 @@ public:
 	virtual bool Update() = 0;
 };
 
-#endif
+
 

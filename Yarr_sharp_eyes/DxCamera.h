@@ -1,5 +1,4 @@
-#ifndef _CAMERA_H_
-#define _CAMERA_H_
+#pragma once
 
 #include "Entity.h"
 #include "Camera.h"
@@ -28,4 +27,3 @@ private:
 	D3DXMATRIX m_viewMatrix;
 };
 
-#endif

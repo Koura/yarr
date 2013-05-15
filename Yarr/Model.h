@@ -1,5 +1,4 @@
-#ifndef _MODEL_H_
-#define _MODEL_H_
+#pragma once
 
 #include <fstream>
 
@@ -27,4 +26,3 @@ protected:
 	int m_vertexCount, m_indexCount;
 	ModelType* m_model;
 };
-#endif

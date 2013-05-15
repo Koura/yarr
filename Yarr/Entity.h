@@ -1,5 +1,4 @@
-#ifndef _ENTITY_H_
-#define _ENTITY_H_
+#pragma once
 
 #include "CRefCounted.h"
 #include <cmath>
@@ -27,4 +26,3 @@ private:
 	std::string m_entityName;
 };
 
-#endif

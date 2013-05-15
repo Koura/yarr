@@ -1,5 +1,4 @@
-#ifndef _D3DCLASS_H_
-#define _D3DCLASS_H_
+#pragma once
 
 #pragma comment(lib, "d3d10.lib")
 #pragma comment(lib, "d3dx10.lib")
@@ -62,4 +61,3 @@ private:
 	DX10ModelFactory* m_modelFactory;
 	DX10Model* m_model;
 };
-#endif

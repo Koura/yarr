@@ -1,5 +1,4 @@
-#ifndef _INTRUSIVEPTR_H_
-#define _INTRUSIVEPTR_H_
+#pragma once
 
 template<class T>
 class IntrusivePtr 
@@ -21,4 +20,3 @@ template<class U>
 private:
 	T* ptr;
 };
-#endif

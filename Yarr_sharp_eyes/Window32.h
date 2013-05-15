@@ -1,5 +1,4 @@
-#ifndef _WINDOW32_H_
-#define _WINDOW32_H_
+#pragma once
 
 
 #define WIN32_LEAN_AND_MEAN
@@ -27,4 +26,3 @@ private:
 static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 static Window32* ApplicationHandle = 0;
 
-#endif

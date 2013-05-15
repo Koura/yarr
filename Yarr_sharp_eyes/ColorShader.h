@@ -1,5 +1,4 @@
-#ifndef _COLORSHADER_H_
-#define _COLORSHADER_H_
+#pragma once
 
 #include <D3D10.h>
 #include <D3DX10math.h>
@@ -31,5 +30,3 @@ private:
 	ID3D10EffectMatrixVariable* m_viewMatrixPtr;
 	ID3D10EffectMatrixVariable* m_projectionMatrixPtr;
 };
-
-#endif
