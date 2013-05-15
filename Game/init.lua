@@ -6,7 +6,12 @@ function init()
 	print("----")
 	print("init")
 	print("----")
+	if frames==nil then
+		frames=0
+	end
 end
+
+
 
 function test(testattava)
 	if testattava==nil then 

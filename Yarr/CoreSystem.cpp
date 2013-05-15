@@ -35,11 +35,7 @@ bool CoreSystem::Initialize(int screenWidth, int screenHeight)
 	}
 	//luabind
 	m_LuaState = luaL_newstate();
-	luaopen_base(m_LuaState);
-    luaopen_string(m_LuaState);
-    luaopen_math(m_LuaState);
-    luaopen_io(m_LuaState);
-    luaopen_table(m_LuaState);
+	luaL_openlibs(m_LuaState);
 	luabind::open(m_LuaState);
 	m_luaApi = new LuaApi(m_LuaState);
 	m_luaApi->RegisterToLua();
@@ -152,6 +148,4 @@ void CoreSystem::InitScene(ModelFactory* modelFactory)
 {
 	m_scene->Initialize(modelFactory);
 	m_renderer->SetScene(m_scene);
-	m_scene->NewEntity("Bullocks", -1.0f,0.0f,0.0f);
-	m_scene->NewEntity("RATMAN", 1.0f, 3.0f, 1.0f);
 }
